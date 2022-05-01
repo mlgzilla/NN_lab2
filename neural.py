@@ -1,5 +1,6 @@
 import numpy as np
 
+
 class Perceptron:
     def __init__(self, inputSize, hiddenSizes, outputSize):
         
@@ -85,6 +86,10 @@ class MLP:
     def train(self, x_values, target):
         # self.feed_forward(x_values)
         # self.backward(target)
+        rng_state = np.random.get_state()
+        np.random.shuffle(x_values)
+        np.random.set_state(rng_state)
+        np.random.shuffle(target)
         for x, y in zip(x_values, target):
             self.feed_forward(np.array([x]))
             self.backward(np.array([y]))
